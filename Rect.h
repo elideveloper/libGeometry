@@ -1,10 +1,8 @@
 #pragma once
 
-#include "Vec2D.h"
+#include "Shape.h"
 
-class Rect {
-	Vec2D position;
-	Vec2D direction;
+class Rect : public Shape {
 	double halfWidth;
 	double halfHeight;
 public:
@@ -12,5 +10,11 @@ public:
 	Rect(const Rect& rect);
 	Rect(const Vec2D& pos, const Vec2D& dir, double hWidth, double hHeight);
 
+	double getWidth() const;
+	double getHeight() const;
+	
+
+	//getShifted
+	//getRotated
 
 };

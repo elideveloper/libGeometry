@@ -13,6 +13,7 @@ public:
 	Vec2D& operator = (const Vec2D& v);
 	bool operator == (const Vec2D& v) const;
 	bool operator != (const Vec2D& v) const;
+	bool isZero() const;
 	double getX() const;
 	double getY() const;
 	double dot(const Vec2D& v) const;

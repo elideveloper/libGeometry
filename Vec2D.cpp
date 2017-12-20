@@ -35,6 +35,11 @@ bool Vec2D::operator != (const Vec2D& v) const
 	return abs(x - v.x) >= EPS || abs(y - v.y) >= EPS;
 }
 
+bool Vec2D::isZero() const
+{
+	return abs(x) < EPS && abs(y) < EPS;
+}
+
 double Vec2D::getX() const
 {
 	return this->x;
@@ -47,24 +52,25 @@ double Vec2D::getY() const
 
 double Vec2D::dot(const Vec2D& v) const
 {
+	if (this->isZero() || v.isZero()) return 0.0;
 	return x * v.x + y * v.y;
 }
 
 double Vec2D::getLength() const
 {
-	if (abs(x) < EPS && abs(y) < EPS) return 0.0;
+	if (this->isZero()) return 0.0;
 	return sqrt(x * x + y * y);
 }
 
 double Vec2D::getLengthSquared() const
 {
-	if (abs(x) < EPS && abs(y) < EPS) return 0.0;
+	if (this->isZero()) return 0.0;
 	return x * x + y * y;
 }
 
 double Vec2D::getAngle() const
 {
-	if (abs(x) < EPS && abs(y) < EPS) return 0.0;
+	if (this->isZero()) return 0.0;
 	return atan2(y, x);
 }
 
@@ -90,6 +96,7 @@ double Vec2D::getDistanceSquare(const Vec2D& v) const
 
 Vec2D Vec2D::getUnit() const
 {
+	if (this->isZero()) return Vec2D();
 	double l = this->getLength();
 	if (abs(l - 1.0) >= EPS) {
 		return Vec2D(this->x / l, this->y / l);
@@ -99,6 +106,7 @@ Vec2D Vec2D::getUnit() const
 
 Vec2D Vec2D::getRightPerpend() const
 {
+	if (this->isZero()) return Vec2D();
 	double x = this->y;
 	double y = -this->x;
 	return Vec2D(x, y);
@@ -106,6 +114,7 @@ Vec2D Vec2D::getRightPerpend() const
 
 Vec2D Vec2D::getLeftPerpend() const
 {
+	if (this->isZero()) return Vec2D();
 	double y = this->x;
 	double x = -this->y;
 	return Vec2D(x, y);
@@ -113,11 +122,13 @@ Vec2D Vec2D::getLeftPerpend() const
 
 Vec2D Vec2D::getReversed() const
 {
+	if (this->isZero()) return Vec2D();
 	return Vec2D(-this->x, -this->y);
 }
 
 Vec2D Vec2D::getRotated(double angle) const
 {
+	if (this->isZero()) return Vec2D();
 	double sinVal = sin(angle);
 	double cosVal = cos(angle);
 	return Vec2D(x * cosVal - y * sinVal, x * sinVal + y * cosVal);
@@ -125,22 +136,24 @@ Vec2D Vec2D::getRotated(double angle) const
 
 Vec2D Vec2D::getScaled(double len) const
 {
+	if (this->isZero()) return Vec2D();
 	double angle = this->getAngle();
 	return Vec2D(len * cos(angle), len * sin(angle));
 }
 
-Vec2D Vec2D::add(const Vec2D & v) const
+Vec2D Vec2D::add(const Vec2D& v) const
 {
 	return Vec2D(this->x + v.x, this->y + v.y);
 }
 
-Vec2D Vec2D::sub(const Vec2D & v) const
+Vec2D Vec2D::sub(const Vec2D& v) const
 {
 	return Vec2D(this->x - v.x, this->y - v.y);
 }
 
 Vec2D Vec2D::mul(double val) const
 {
+	if (this->isZero()) return Vec2D();
 	return Vec2D(this->x * val, this->y * val);
 }
 
@@ -150,7 +163,7 @@ void Vec2D::set(double x, double y)
 	this->y = y;
 }
 
-void Vec2D::set(const Vec2D & v)
+void Vec2D::set(const Vec2D& v)
 {
 	this->x = v.x;
 	this->y = v.y;
@@ -158,6 +171,7 @@ void Vec2D::set(const Vec2D & v)
 
 void Vec2D::normalize()
 {
+	if (this->isZero()) return;
 	double l = this->getLength();
 	if (abs(l - 1.0) >= EPS) {
 		this->x /= l;
@@ -167,6 +181,7 @@ void Vec2D::normalize()
 
 void Vec2D::rotate(double angle)
 {
+	if (this->isZero()) return;
 	double sinVal = sin(angle);
 	double cosVal = cos(angle);
 	double xNew = x * cosVal - y * sinVal;
@@ -176,12 +191,14 @@ void Vec2D::rotate(double angle)
 
 void Vec2D::reverse()
 {
+	if (this->isZero()) return;
 	this->x = -this->x;
 	this->y = -this->y;
 }
 
 void Vec2D::scale(double len)
 {
+	if (this->isZero()) return;
 	double l = this->getLength();
 	this->x *= len / l;
 	this->y *= len / l;
