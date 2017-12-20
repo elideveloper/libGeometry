@@ -31,8 +31,7 @@ void Shape::move(double dist)
 
 void Shape::rotate(const Vec2D& vector)
 {
-	this->direction.add(vector.getUnit());
-	this->direction.normalize();
+	this->direction = this->direction.add(vector.getUnit()).getUnit();
 }
 
 void Shape::rotate(double angle)

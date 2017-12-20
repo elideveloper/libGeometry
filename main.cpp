@@ -1,4 +1,4 @@
-#include "Vec2D.h"
+#include "Rect.h"
 
 #include <iostream>
 
@@ -13,6 +13,8 @@ int main() {
 	cout << vec1.add(vec2).getReversed().getDistanceSquare(vec1) << endl;
 	vec1.add(vec2).getReversed().print();
 	vec.print();
+
+	Rect rec();
 
 	system("pause");
 	return 0;

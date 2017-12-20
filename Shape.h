@@ -10,11 +10,9 @@ public:
 	Shape();
 	Shape(const Vec2D& pos, const Vec2D& dir);
 	Shape(const Shape& shape);
-
 	Vec2D getPosition() const;
 	Vec2D getDirection() const;
-	virtual double getSquare() const = 0;
-	virtual bool isIntersect(const Shape* shape) const = 0;
+	virtual double getArea() const = 0;
 	virtual bool isInclude(const Vec2D& point) const = 0;
 	virtual void shift(const Vec2D& vector);		// shifts position to given vector, keeps direction
 	virtual void move(double dist);					// shifts position to given distance by itself direction, keeps direction
