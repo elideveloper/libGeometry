@@ -68,6 +68,26 @@ double Vec2D::getAngle() const
 	return atan2(y, x);
 }
 
+double Vec2D::getDistance(double x, double y) const
+{
+	return sqrt((x - this->x)*(x - this->x) + (y - this->y)*(y - this->y));
+}
+
+double Vec2D::getDistance(const Vec2D& v) const
+{
+	return sqrt((v.x - this->x)*(v.x - this->x) + (v.y - this->y)*(v.y - this->y));
+}
+
+double Vec2D::getDistanceSquare(double x, double y) const
+{
+	return (x - this->x)*(x - this->x) + (y - this->y)*(y - this->y);
+}
+
+double Vec2D::getDistanceSquare(const Vec2D& v) const
+{
+	return (v.x - this->x)*(v.x - this->x) + (v.y - this->y)*(v.y - this->y);
+}
+
 Vec2D Vec2D::getUnit() const
 {
 	double l = this->getLength();

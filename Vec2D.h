@@ -19,6 +19,10 @@ public:
 	double getLength() const;
 	double getLengthSquared() const;
 	double getAngle() const;
+	double getDistance(double x, double y) const;
+	double getDistance(const Vec2D& v) const;
+	double getDistanceSquare(double x, double y) const;
+	double getDistanceSquare(const Vec2D& v) const;
 	Vec2D getUnit() const;
 	Vec2D getRightPerpend() const;
 	Vec2D getLeftPerpend() const;
