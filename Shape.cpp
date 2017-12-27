@@ -21,12 +21,12 @@ Vec2D Shape::getDirection() const
 
 void Shape::shift(const Vec2D& vector)
 {
-	this->position.add(vector);
+	this->position = this->position.add(vector);
 }
 
 void Shape::move(double dist)
 {
-	this->position.add(Vec2D(this->direction.getX() * dist, this->direction.getY() * dist));
+	this->position = this->position.add(Vec2D(this->direction.getX() * dist, this->direction.getY() * dist));
 }
 
 void Shape::rotate(const Vec2D& vector)
