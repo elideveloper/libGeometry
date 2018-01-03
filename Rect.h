@@ -1,6 +1,9 @@
 #pragma once
 
 #include "Shape.h"
+#include "Circle.h"
+
+#include <vector>
 
 class Rect : public Shape {
 	double halfWidth;
@@ -17,5 +20,7 @@ public:
 	Rect getShifted(const Vec2D& vector) const;
 	Rect getRotated(const Vec2D& vector) const;
 	Rect getRotated(double angle) const;
-	// TODO intersections with other shapes
+	std::vector<Vec2D> getVertices() const;
+	bool isIntersect(const Rect& rect) const;
+	bool isIntersect(const Circle& circle) const;
 };

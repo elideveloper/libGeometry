@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Shape.h"
+#include "Rect.h"
 
 class Circle : public Shape {
 	double radius;
@@ -14,5 +15,6 @@ public:
 	Circle getShifted(const Vec2D& vector) const;
 	Circle getRotated(const Vec2D& vector) const;
 	Circle getRotated(double angle) const;
-	// TODO intersections with other shapes
+	bool isIntersect(const Circle& circle) const;
+	bool isIntersect(const Rect& rect) const;
 };

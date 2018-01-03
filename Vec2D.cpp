@@ -107,17 +107,13 @@ Vec2D Vec2D::getUnit() const
 Vec2D Vec2D::getRightPerpend() const
 {
 	if (this->isZero()) return Vec2D();
-	double x = this->y;
-	double y = -this->x;
-	return Vec2D(x, y);
+	return Vec2D(-this->y, this->x);
 }
 
 Vec2D Vec2D::getLeftPerpend() const
 {
 	if (this->isZero()) return Vec2D();
-	double y = this->x;
-	double x = -this->y;
-	return Vec2D(x, y);
+	return Vec2D(this->y, -this->x);
 }
 
 Vec2D Vec2D::getReversed() const

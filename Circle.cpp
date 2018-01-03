@@ -38,3 +38,18 @@ Circle Circle::getRotated(double angle) const
 {
 	return Circle(this->position, this->direction.getRotated(angle), this->radius);
 }
+
+bool Circle::isIntersect(const Circle& circle) const
+{
+	return this->position.getDistance(circle.position) <= circle.getRadius() + this->getRadius();
+}
+
+bool Circle::isIntersect(const Rect& rect) const
+{
+	if (rect.getHalfDiag() + this->radius < rect.getPosition().getDistance(this->position)) return false;
+	if (MIN(rect.getHeight(), rect.getWidth()) + this->radius >= rect.getPosition().getDistance(this->position)) return true;
+	// TODO
+	std::vector<Vec2D> vertices = rect.getVertices();
+	for (Vec2D v : vertices) if (this->isInclude(v)) return true;
+	return false;
+}
