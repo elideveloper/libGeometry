@@ -27,17 +27,17 @@ Vec2D& Vec2D::operator = (const Vec2D& v)
 
 bool Vec2D::operator == (const Vec2D& v) const
 {
-	return abs(x - v.x) < EPS && abs(y - v.y) < EPS;
+	return fabs(x - v.x) < EPS && fabs(y - v.y) < EPS;
 }
 
 bool Vec2D::operator != (const Vec2D& v) const
 {
-	return abs(x - v.x) >= EPS || abs(y - v.y) >= EPS;
+	return fabs(x - v.x) >= EPS || fabs(y - v.y) >= EPS;
 }
 
 bool Vec2D::isZero() const
 {
-	return abs(x) < EPS && abs(y) < EPS;
+	return fabs(x) < EPS && fabs(y) < EPS;
 }
 
 double Vec2D::getX() const
@@ -98,7 +98,7 @@ Vec2D Vec2D::getUnit() const
 {
 	if (this->isZero()) return Vec2D();
 	double l = this->getLength();
-	if (abs(l - 1.0) >= EPS) {
+	if (fabs(l - 1.0) >= EPS) {
 		return Vec2D(this->x / l, this->y / l);
 	}
 	return Vec2D(*this);
@@ -169,7 +169,7 @@ void Vec2D::normalize()
 {
 	if (this->isZero()) return;
 	double l = this->getLength();
-	if (abs(l - 1.0) >= EPS) {
+	if (fabs(l - 1.0) >= EPS) {
 		this->x /= l;
 		this->y /= l;
 	}
